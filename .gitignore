@@ -4,3 +4,5 @@
 output/**/*.xlsx
 # 保留 src/ 目录下的 .xlsx 文件（即使上面规则忽略了全部）
 !src/**/*.xlsx
+
+.DS_Store
