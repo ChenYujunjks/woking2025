@@ -86,7 +86,7 @@ columns_to_export = list(dict.fromkeys(columns_to_export))  # 去重列名
 final_df = merged_df.loc[:, columns_to_export]
 
 # ✅ 可选：删除 F~V 列（如有需要再打开）
-# final_df.drop(final_df.columns[5:22], axis=1, inplace=True)
+final_df.drop(final_df.columns[4:18], axis=1, inplace=True)
 
 # ✅ 匹配统计提示
 student_total = len(student_df)
