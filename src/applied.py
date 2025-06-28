@@ -1,14 +1,12 @@
 import pandas as pd
 import os
 
-# ==== 基础路径 ====
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))  # 即 src/ 目录
 
 # ==== 文件路径 ====
 master_file = os.path.join(BASE_DIR, "total.xlsx")  # src/total.xlsx
 
-# 指定学生文件来自项目根目录的 students 文件夹
-student_filename = "沈钰倚.xlsx"
+student_filename = "沈蓝艺.xlsx"
 student_file = os.path.join(BASE_DIR, "..", student_filename)
 
 # 输出文件放在项目根目录的 output 文件夹
@@ -17,7 +15,9 @@ output_file = os.path.join(BASE_DIR, "..", "output", output_filename)
 
 # 确保输出目录存在
 os.makedirs(os.path.dirname(output_file), exist_ok=True)
-# ==== 读取 master 总表格 ====
+
+
+# ==== 读取总表格 ====
 master_df = pd.read_excel(master_file, header=1)
 
 # 构造 master_df 的匹配键（第6列 + 第8列）
@@ -58,6 +58,13 @@ merged_df = pd.merge(
     how="left",                # 保留 student_df 的顺序
     suffixes=('', '_master')  # 避免列名冲突
 )
+
+# 删除 student 原有的学制和学费列，避免重复
+for col in ["学费", "学制"]:
+    if col in merged_df.columns and col + "_master" in merged_df.columns:
+        merged_df.drop(columns=[col], inplace=True)
+
+
 # ✅ 重命名最低分和最低位次列
 rename_map = {
     "最低分": "最低分_24",
@@ -74,8 +81,10 @@ merged_df.rename(columns=rename_map, inplace=True)
 columns_to_export = list(student_df.columns[:2]) + list(merged_df.columns)
 columns_to_export = list(dict.fromkeys(columns_to_export))  # 去重列名
 final_df = merged_df.loc[:, columns_to_export]
+
 # ✅ 删除 F 到 V 列
-final_df.drop(final_df.columns[5:22], axis=1, inplace=True)
+#final_df.drop(final_df.columns[5:22], axis=1, inplace=True)
+
 # ✅ 志愿数量 vs 匹配数量提示
 student_total = len(student_df)
 matched_total = len(final_df)
