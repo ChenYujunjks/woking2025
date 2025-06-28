@@ -1,0 +1,6 @@
+# 忽略根目录下的所有 .xlsx 文件
+/*.xlsx
+
+output/**/*.xlsx
+# 保留 src/ 目录下的 .xlsx 文件（即使上面规则忽略了全部）
+!src/**/*.xlsx
