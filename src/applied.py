@@ -16,8 +16,8 @@ output_file = os.path.join(BASE_DIR, "..", "output", output_filename)
 # 确保输出目录存在
 os.makedirs(os.path.dirname(output_file), exist_ok=True)
 
-
 # ==== 读取总表格 ====
+
 master_df = pd.read_excel(master_file, header=1)
 
 # 构造 master_df 的匹配键（第6列 + 第8列）
