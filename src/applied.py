@@ -6,7 +6,7 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))  # 即 src/ 目录
 # ==== 文件路径 ====
 master_file = os.path.join(BASE_DIR, "total.xlsx")  # src/total.xlsx
 
-student_filename = "沈蓝艺.xlsx"
+student_filename = "金楷淏.xlsx"
 student_file = os.path.join(BASE_DIR, "..", student_filename)
 
 # 输出文件放在项目根目录的 output 文件夹
@@ -72,14 +72,17 @@ rename_map = {
     "最低分": "最低分_24",
     "最低分.1": "最低分_23",
     "最低分.2": "最低分_22",
-    "最低位次": "最低位次_24",
-    "最低位次.1": "最低位次_23",
-    "最低位次.2": "最低位次_22",
+    "最低\n位次": "最低位次_24",
+    "最低\n位次.1": "最低位次_23",
+    "最低\n位次.2": "最低位次_22",
     "学制_master": "学制",
     "学费_master": "学费",
 }
 merged_df.rename(columns=rename_map, inplace=True)
 
+# ✅ 删除 master 表中冗余的“专业代码_master”列
+if "专业\n代码_master" in merged_df.columns:
+    merged_df.drop(columns=["专业\n代码_master"], inplace=True)
 # ==== 构造导出字段（保留志愿序号前两列 + 所有合并字段） ====
 columns_to_export = list(student_df.columns[:2]) + list(merged_df.columns)
 columns_to_export = list(dict.fromkeys(columns_to_export))  # 去重列名
