@@ -6,7 +6,7 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))  # 即 src/ 目录
 # ==== 文件路径 ====
 master_file = os.path.join(BASE_DIR, "total.xlsx")  # src/total.xlsx
 
-student_filename = "金楷淏.xlsx"
+student_filename = "黄泊静.xlsx"
 student_file = os.path.join(BASE_DIR, "..", student_filename)
 
 # 输出文件放在项目根目录的 output 文件夹
