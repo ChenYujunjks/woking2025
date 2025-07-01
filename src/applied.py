@@ -6,7 +6,7 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))  # 即 src/ 目录
 # ==== 文件路径 ====
 master_file = os.path.join(BASE_DIR, "total.xlsx")  # src/total.xlsx
 
-student_filename = "黄泊静.xlsx"
+student_filename = "金以诺.xlsx"
 student_file = os.path.join(BASE_DIR, "..", student_filename)
 
 # 输出文件放在项目根目录的 output 文件夹
@@ -15,7 +15,7 @@ output_file = os.path.join(BASE_DIR, "..", "output", output_filename)
 
 # 确保输出目录存在
 os.makedirs(os.path.dirname(output_file), exist_ok=True)
-
+ 
 # ==== 读取 master 总表格 ====
 master_df = pd.read_excel(master_file, header=1)
 
